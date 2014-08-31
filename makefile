@@ -1,12 +1,12 @@
 SFML_INCLUDE="C:/Program Files/Microsoft Visual Studio 10.0/SFML-2.1/include"
-LIBRARIES = -lsfml-audio -lsfml-network -lsfml-window -lsfml-graphics \
--lglu32 -lopengl32 -lglew32
+LIBRARIES = -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lglu32 -lglew32
+SFML_LIB="C:\Documents and Settings\David Godfrey\My Documents\SFML-2.1\lib"
 
 all: main.o
-	g++ -std=c++11 -Wall -I$(SFML_INCLUDE) -o pong main.o
+	g++ main.o -o pong -L$(SFML_LIB) $(LIBRARIES)
 	mv main.o dependencies
 
 main.o:
-	g++ -L/lib -I$(SFML_INCLUDE)  $(LIBRARIES) -c include/main.cpp
+	g++ -std=c++11 -Wall -c include/main.cpp -I$(SFML_INCLUDE)
 clean:
-	rm pong.exe
+	rm pong.exe dependencies/main.o
